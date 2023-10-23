@@ -9,7 +9,7 @@ import java.net.*;
 
 /**
  *
- * @author razi
+ * @author wisbo
  */
 public class TCPEchoServer { 
   private static ServerSocket servSock;

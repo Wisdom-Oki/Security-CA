@@ -1,17 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tcpechoclient;
+package com.mycompany.tcpechoserver;
 import java.io.*;
 import java.net.*;
 
 /**
  *
- * @author razi
+ * @author wisdom
  */
-public class TCPEchoClient {
+public class EchoClient {
  private static InetAddress host;
     private static final int PORT = 1234;
 
@@ -66,3 +65,4 @@ public class TCPEchoClient {
     }
  } // finish run method
 }  //finish the class
+
