@@ -40,6 +40,7 @@ public class TCPEchoServer {
     Socket link = null;                        //Step 2.
     try 
     {
+      Encyrption encyrpt = new Encyrption();
       link = servSock.accept();               //Step 2.
       clientConnections++;
       BufferedReader in = new BufferedReader( new InputStreamReader(link.getInputStream())); //Step 3.
