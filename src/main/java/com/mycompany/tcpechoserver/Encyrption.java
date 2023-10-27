@@ -1,10 +1,12 @@
 package com.mycompany.tcpechoserver;
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.util.Base64;
 
 public class Encyrption {
-    //You can create a smaller alphabet to decrypt here: dcode.fr/deranged-alphabet-generator
-    //You can test the result here: dcode.fr/atbash-cipher
-    private static final char[] ALPHABET = "POjl9sri6LWy8X5cZA7HQkUvKaJCqbFRp14tm2TYfwE0gzdISNMDxGuh3VoenB".toCharArray();
-    private static final char[] REVERSED_ALPHABET = new StringBuilder("POjl9sri6LWy8X5cZA7HQkUvKaJCqbFRp14tm2TYfwE0gzdISNMDxGuh3VoenB").reverse().toString().toCharArray();
 
     private String message;
     private String newMessage;
@@ -12,6 +14,12 @@ public class Encyrption {
     public Encyrption() {
         this.message = "";
         this.newMessage = "";
+        // Generate key
+        try{
+          SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
+        }catch(NoSuchAlgorithmException e){
+            System.out.println("error"+ e);
+        }
     }
 
     public String getNewMessage() {
