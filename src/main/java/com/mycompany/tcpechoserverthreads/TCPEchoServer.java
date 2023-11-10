@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.tcpechoserver;
+package com.mycompany.tcpechoserverthreads;
 import java.io.*;
 import java.net.*;
 
 /**
  *
- * @author wisbo
+ * @author razi
  */
 public class TCPEchoServer { 
   private static ServerSocket servSock;
@@ -40,27 +40,21 @@ public class TCPEchoServer {
     Socket link = null;                        //Step 2.
     try 
     {
-      Encyrption encyrpt = new Encyrption();
-      link = servSock.accept();               //Step 2.
-      clientConnections++;
-      BufferedReader in = new BufferedReader( new InputStreamReader(link.getInputStream())); //Step 3.
-      PrintWriter out = new PrintWriter(link.getOutputStream(),true); //Step 3.
-      
-      String message = in.readLine();         //Step 4.
-      System.out.println("Message received from client: " + clientConnections + "  "+ message);
-      out.println("Echo Message: " + message);     //Step 4.
-     }
-    catch(IOException e)
-    {
-        e.printStackTrace();
+        link = servSock.accept(); 
+        clientConnections++;
+        String client_ID = "Client "+ clientConnections;
+        Runnable resource = new ClientConnectionRun(link, client_ID);
+        Thread t = new Thread (resource);
+        t.start();
     }
-    finally 
+    catch(IOException e1)
     {
-       try {
+        e1.printStackTrace();
+        try {
 	    System.out.println("\n* Closing connection... *");
             link.close();				    //Step 5.
 	}
-       catch(IOException e)
+       catch(IOException e2)
        {
             System.out.println("Unable to disconnect!");
 	    System.exit(1);
