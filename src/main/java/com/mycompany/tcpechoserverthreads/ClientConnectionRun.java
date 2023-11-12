@@ -14,7 +14,7 @@ import java.util.*;
 
 /**
  *
- * @author razi
+ * @author wisdom
  */
 public class ClientConnectionRun implements Runnable {
     Socket client_link = null;  
@@ -31,8 +31,15 @@ public class ClientConnectionRun implements Runnable {
             PrintWriter out = new PrintWriter(client_link.getOutputStream(),true); //Step 3.
       
             String message = in.readLine();         //Step 4.
+
+            String secretKey = "SuperCoolKey";
+            String encryptedMessage = Encryption.encrypt(message, secretKey);
+            //String decryptedMessage = Encryption.decrypt(message, secretKey);
+            System.out.println("Encrypted message: " + encryptedMessage);
+
+
             System.out.println("Message received from client: " + clientID + "  "+ message);
-            out.println("Echo Message: " + message);    
+            out.println("Echo Message: " + message+" "+encryptedMessage);    
         }
         catch(IOException e)
         {

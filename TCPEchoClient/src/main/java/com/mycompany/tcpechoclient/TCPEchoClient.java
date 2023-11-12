@@ -9,7 +9,7 @@ import java.net.*;
 
 /**
  *
- * @author razi
+ * @author wisdom
  */
 public class TCPEchoClient {
  private static InetAddress host;
@@ -33,7 +33,6 @@ public class TCPEchoClient {
     try 
     {
 	link = new Socket(host,PORT);		//Step 1.
-        //link = new Socket( "192.168.0.59", PORT);
 	BufferedReader in = new BufferedReader(new InputStreamReader(link.getInputStream()));//Step 2.
 	PrintWriter out = new PrintWriter(link.getOutputStream(),true);	 //Step 2.
 
