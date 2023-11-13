@@ -34,12 +34,11 @@ public class ClientConnectionRun implements Runnable {
 
             String secretKey = "SuperCoolKey";
             String encryptedMessage = Encryption.encrypt(message, secretKey);
-            //String decryptedMessage = Encryption.decrypt(message, secretKey);
-            System.out.println("Encrypted message: " + encryptedMessage);
+            String decryptedMessage = Encryption.decrypt(encryptedMessage, secretKey);
 
 
             System.out.println("Message received from client: " + clientID + "  "+ message);
-            out.println("Echo Message: " + message+" "+encryptedMessage);    
+            out.println("Echo Message: " + message+", "+encryptedMessage+", "+ decryptedMessage);    
         }
         catch(IOException e)
         {
