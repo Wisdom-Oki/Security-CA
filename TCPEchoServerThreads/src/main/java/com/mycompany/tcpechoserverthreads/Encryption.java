@@ -4,8 +4,6 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.security.Key;
 import java.util.Arrays;
 import java.util.Base64;
 
@@ -14,7 +12,7 @@ public class Encryption {
     private static byte[] key;
 
     private static void setKey(String myKey) {
-        MessageDigest sha = null;
+        MessageDigest sha;
         try {
             key = myKey.getBytes(StandardCharsets.UTF_8);
             sha = MessageDigest.getInstance("SHA-256");

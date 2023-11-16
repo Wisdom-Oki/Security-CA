@@ -11,7 +11,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.security.Key;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.crypto.SecretKey;
 
 /**
  *
@@ -67,15 +71,17 @@ public class ClientConnectionRun implements Runnable {
 
 
             String message = in.readLine();
-
-            String secretKey = "SuperCoolKey";
-            String encryptedMessage = Encryption.encrypt(message, secretKey);
-            String decryptedMessage = Encryption.decrypt(encryptedMessage, secretKey);
+            SecretKey secretKey = GoldenKeyMaker.makeKey();
+            String stringKey = secretKey.toString();
+            String encryptedMessage = Encryption.encrypt(message, stringKey);
+            String decryptedMessage = Encryption.decrypt(encryptedMessage, stringKey);
 
             System.out.println("Message received from client: " + clientID + "  " + message);
             out.println("Echo Message: " + message + ", " + encryptedMessage + ", " + decryptedMessage);
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
         }
 
         finally {
