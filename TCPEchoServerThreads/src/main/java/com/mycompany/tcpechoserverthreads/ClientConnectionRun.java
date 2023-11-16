@@ -71,17 +71,14 @@ public class ClientConnectionRun implements Runnable {
 
 
             String message = in.readLine();
-            SecretKey secretKey = GoldenKeyMaker.makeKey();
-            String stringKey = secretKey.toString();
-            String encryptedMessage = Encryption.encrypt(message, stringKey);
-            String decryptedMessage = Encryption.decrypt(encryptedMessage, stringKey);
+            String secretkey = GoldenKeyMaker.makeKey();
+            String encryptedMessage = Encryption.encrypt(message, secretkey);
+            String decryptedMessage = Encryption.decrypt(encryptedMessage, secretkey);
 
             System.out.println("Message received from client: " + clientID + "  " + message);
             out.println("Echo Message: " + message + ", " + encryptedMessage + ", " + decryptedMessage);
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (NoSuchAlgorithmException ex) {
-            ex.printStackTrace();
         }
 
         finally {
