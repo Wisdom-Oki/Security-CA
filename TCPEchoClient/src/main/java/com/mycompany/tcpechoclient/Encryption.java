@@ -1,4 +1,4 @@
-package com.mycompany.tcpechoserverthreads;
+package com.mycompany.tcpechoclient;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -21,7 +21,8 @@ public class Encryption {
             secretKey = new SecretKeySpec(key, "AES");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            // dont print stack trace
+            // e.printStackTrace();
         }
     }
 
