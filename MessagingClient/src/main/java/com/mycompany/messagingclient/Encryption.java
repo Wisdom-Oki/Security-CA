@@ -10,7 +10,7 @@ import java.util.Base64;
 public class Encryption {
     private static SecretKeySpec secretKey;
     private static byte[] key;
-
+    //Set the key for encryption 
     private static void setKey(String myKey) {
         MessageDigest sha;
         try {
@@ -25,7 +25,7 @@ public class Encryption {
             // e.printStackTrace();
         }
     }
-
+    //Encrypt the message sent by the client using the key genrated
     public static String encrypt(String strToEncrypt, String secret) {
         try {
             setKey(secret);
@@ -37,7 +37,7 @@ public class Encryption {
         }
         return null;
     }
-
+    //Decrypt the message sent by the client using the key genrated
     public static String decrypt(String strToDecrypt, String secret) {
         try {
             setKey(secret);
